@@ -2,13 +2,13 @@
 session_start();
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true || $_SESSION['username'] !== 'admin') {
-    header("Location: ../index.php");
+    header("Location: ../index.html");
     exit;
 }
 // this file was created by the user "kaprolek", was modified and is owned by magiczny_jasiek -->  https://vacban.wtf/vacshop/78615/
 
 function updateUsers($users) {
-    $loginFile = '../login.php';
+    $loginFile = '../login.html';
     $originalContent = file_get_contents($loginFile);
     
     $usersContent = '';
@@ -30,7 +30,7 @@ function updateUsers($users) {
 }
 // this file was created by the user "kaprolek", was modified and is owned by magiczny_jasiek -->  https://vacban.wtf/vacshop/78615/
 function getCurrentUsers() {
-    $loginContent = file_get_contents('../login.php');
+    $loginContent = file_get_contents('../login.html');
     $users = [];
     
     preg_match_all('/\"([a-zA-Z0-9_]+)\"\s*=>\s*\"([^\"]+)\"/', $loginContent, $matches, PREG_SET_ORDER);
@@ -50,27 +50,27 @@ switch ($action) {
             $password = trim($_POST['password'] ?? '');
             
             if (empty($username) || empty($password)) {
-                header('Location: index.php?tab=users&error=Username oraz AuthKey nie mogą być puste');
+                header('Location: index.html?tab=users&error=Username oraz AuthKey nie mogą być puste');
                 exit;
             }
             
             if (!preg_match('/^[a-zA-Z0-9_]+$/', $username)) {
-                header('Location: index.php?tab=users&error=Username posiada niedozwolone znaki.');
+                header('Location: index.html?tab=users&error=Username posiada niedozwolone znaki.');
                 exit;
             }
             
             $users = getCurrentUsers();
             if (isset($users[$username])) {
-                header('Location: index.php?tab=users&error=użytkownik z tym username już istnieje');
+                header('Location: index.html?tab=users&error=użytkownik z tym username już istnieje');
                 exit;
             }
             
             $users[$username] = $password;
             
             if (updateUsers($users)) {
-                header('Location: index.php?tab=users&user_added=true');
+                header('Location: index.html?tab=users&user_added=true');
             } else {
-                header('Location: index.php?tab=users&error=Nie udało się pliku');
+                header('Location: index.html?tab=users&error=Nie udało się pliku');
             }
             exit;
         }
@@ -80,13 +80,13 @@ switch ($action) {
         $username = trim($_GET['username'] ?? '');
         
         if (empty($username)) {
-            header('Location: index.php?tab=users&error=Nie podano username');
+            header('Location: index.html?tab=users&error=Nie podano username');
             exit;
         }
 		// this file was created by the user "kaprolek", was modified and is owned by magiczny_jasiek -->  https://vacban.wtf/vacshop/78615/
         
         if ($username === 'admin') {
-            header('Location: index.php?tab=users&error=Nie można usunąć administratora');
+            header('Location: index.html?tab=users&error=Nie można usunąć administratora');
             exit;
         }
         
@@ -95,17 +95,18 @@ switch ($action) {
             unset($users[$username]);
             
             if (updateUsers($users)) {
-                header('Location: index.php?tab=users&user_deleted=true');
+                header('Location: index.html?tab=users&user_deleted=true');
             } else {
-                header('Location: index.php?tab=users&error=Nie udało sie zmodyfikowac pliku');
+                header('Location: index.html?tab=users&error=Nie udało sie zmodyfikowac pliku');
             }
         } else {
-            header('Location: index.php?tab=users&error=Nie znaleziono użytkownika');
+            header('Location: index.html?tab=users&error=Nie znaleziono użytkownika');
         }
         exit;
         break;
         
     default:
-        header('Location: index.php?tab=users');
+        header('Location: index.html?tab=users');
         exit;// this file was created by the user "kaprolek", was modified and is owned by magiczny_jasiek -->  https://vacban.wtf/vacshop/78615/
+
 }

@@ -4,7 +4,7 @@ session_start();
 // this file was created by the user "kaprolek", was modified and is owned by magiczny_jasiek -->  https://vacban.wtf/vacshop/78615/
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true || $_SESSION['username'] !== 'admin') {
-    header("Location: ../index.php");
+    header("Location: ../index.html");
     exit;
 }
 
@@ -56,7 +56,7 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
         
         rmdir($dirToDelete);
         
-        header("Location: index.php?tab=apps&deleted=true");
+        header("Location: index.html?tab=apps&deleted=true");
         exit;
     }
 }
@@ -76,7 +76,7 @@ foreach ($apps as $app) {
 arsort($userStats);
 
 $users = [];
-$loginContent = file_get_contents('../login.php');
+$loginContent = file_get_contents('../login.html');
 preg_match_all('/\"([a-zA-Z0-9_]+)\"\s*=>\s*\"([^\"]+)\"/', $loginContent, $matches, PREG_SET_ORDER);
 foreach ($matches as $match) {
     $users[$match[1]] = $match[2];
@@ -101,8 +101,8 @@ foreach ($matches as $match) {
             <p>Panel Administratora</p>
         </div>
         <div class="header-right">
-            <a href="../dashboard.php" id="logout-btn">Dashboard <i class="fas fa-tachometer-alt"></i></a>
-            <a href="../logout.php" id="logout-btn">Logout <i class="fas fa-sign-out-alt"></i></a>
+            <a href="../dashboard.html" id="logout-btn">Dashboard <i class="fas fa-tachometer-alt"></i></a>
+            <a href="../logout.html" id="logout-btn">Logout <i class="fas fa-sign-out-alt"></i></a>
         </div>
     </header>
     
@@ -185,7 +185,7 @@ foreach ($matches as $match) {
                 
                 <div class="card">
                     <h3>Dodawanie nowego użytkownika</h3>
-                    <form action="user_actions.php" method="post">
+                    <form action="user_actions.html" method="post">
                         <input type="hidden" name="action" value="add">
                         <div class="form-group">
                             <label for="new_username">Username:</label>
@@ -226,7 +226,7 @@ foreach ($matches as $match) {
                                         <td><?php echo isset($userStats[$username]) ? $userStats[$username] : 0; ?></td>
                                         <td>
                                             <?php if ($username !== 'admin'): ?>
-                                                <a href="user_actions.php?action=delete&username=<?php echo urlencode($username); ?>" 
+                                                <a href="user_actions.html?action=delete&username=<?php echo urlencode($username); ?>" 
                                                    class="action-btn delete" 
                                                    onclick="return confirm('Czy na pewno chcesz usunąć tego użytkownika?');" 
                                                    title="Usunięcie">

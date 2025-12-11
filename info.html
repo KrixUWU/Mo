@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header("Location: index.php");
+    header("Location: index.html");
     exit;
 }
 ?>
@@ -108,7 +108,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
      <div class="loader"></div>
   <header>
         <h1>demObywatel | Informacje i Regulamin <i class="fas fa-info-circle"></i></h1>
-        <a href="dashboard.php" class="back-button"><i class="fas fa-arrow-left"></i> Back</a>
+        <a href="dashboard.html" class="back-button"><i class="fas fa-arrow-left"></i> Back</a>
     </header>
     <div class="content">
         <h2>O nas</h2>

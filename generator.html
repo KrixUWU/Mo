@@ -10,7 +10,7 @@ function sanitize_input($data) {
 }
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header("Location: index.php");
+    header("Location: index.html");
     exit;
 }
 
@@ -168,7 +168,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <header>
         <h1>demObywatel | Generator <i class="fas fa-user"></i></h1> <br>
-        <a href="dashboard.php" class="back-button"><i class="fas fa-arrow-left"></i> Powrót</a>
+        <a href="dashboard.html" class="back-button"><i class="fas fa-arrow-left"></i> Powrót</a>
     </header>
     <div class="loader"></div>
     <div class="content">
@@ -200,7 +200,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
     </div>
     <div class="navbar">
-        <a href="/info.php" class="nav-link"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+        <a href="/info.html" class="nav-link"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
     </div>
 </body>
 </html>

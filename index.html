@@ -2,7 +2,7 @@
 session_start();
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-    header("Location: dashboard.php");
+    header("Location: dashboard.html");
     exit;
 }
 ?>
@@ -68,7 +68,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     <div class="loader"></div>
   <div class="login-container">
         <h1>demObywatel</h1>
-        <form action="login.php" method="POST">
+        <form action="login.html" method="POST">
             <input type="text" id="username" name="username" placeholder="Username" required>
             <input type="password" id="password" name="password" placeholder="Auth Key" required>
             <button type="submit">Login</button>
